@@ -445,7 +445,7 @@ if [ "$Audit2_6_1_2" = "1" ]; then
 					ENCRYPTION=$(echo "$APVOLINFO" | awk '/FileVault/ {print $3;exit}')
 					if [ "$ENCRYPTION" != "Yes" ]; then
 						echo "* 2.6.1.2 Ensure all user storage APFS Volumes are encrypted" >> "$auditfilelocation"
-						echo "$(date -u)" "2.6.1.2 fix" | tee -a "$logfile"; else 
+						echo "$(date -u)" "2.6.1.2 fix" | tee -a "$logFile"; else 
 						echo "$(date -u)" "2.6.1.2 passed" | tee -a "$logFile"
 						defaults write "$plistlocation" OrgScore2_6_1_2 -bool false	
 						fi
@@ -470,7 +470,7 @@ if [ "$Audit2_6_1_3" = "1" ]; then
 		EncryptStatus="$( diskutil cs "$LFV" | awk '/Conversion Status/ {print $3}')"
 		if [ "$EncryptStatus" != "Complete" ]; then
 		echo "* 2.6.1.3 Ensure all user CoreStorage volumes encrypted" >> "$auditfilelocation"
-		echo "$(date -u)" "2.6.1.3 fix" | tee -a "$logfile"; else 
+		echo "$(date -u)" "2.6.1.3 fix" | tee -a "$logFile"; else 
 		echo "$(date -u)" "2.6.1.3 passed" | tee -a "$logFile"
 		defaults write "$plistlocation" OrgScore2_6_1_3 -bool false	
 		fi

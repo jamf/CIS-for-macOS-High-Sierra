@@ -445,7 +445,7 @@ if [ "$Audit3_3" = "1" ]; then
 	sed "s/${oldExpireAfter}/expire-after:60D OR 1G/g" /etc/security/audit_control_old > /etc/security/audit_control
 	chmod 644 /etc/security/audit_control
 	chown root:wheel /etc/security/audit_control
-	echo "$(date -u)" "3.3 remediated" | tee -a "$logfile"	
+	echo "$(date -u)" "3.3 remediated" | tee -a "$logFile"	
     fi
 
 # 3.5 Retain install.log for 365 or more days 
@@ -460,14 +460,14 @@ if [ "$Audit3_5" = "1" ]; then
 		sed '$s/$/ ttl=365/' /etc/asl/com.apple.install.old > /etc/asl/com.apple.install
 		chmod 644 /etc/asl/com.apple.install
 		chown root:wheel /etc/asl/com.apple.install
-		echo "$(date -u)" "3.5 remediated" | tee -a "$logfile"	
+		echo "$(date -u)" "3.5 remediated" | tee -a "$logFile"	
 	else
 	if [[ "$installRetention" -lt "365" ]]; then
 		mv /etc/asl/com.apple.install /etc/asl/com.apple.install.old
 		sed "s/"ttl=$installRetention"/"ttl=365"/g" /etc/asl/com.apple.install.old > /etc/asl/com.apple.install
 		chmod 644 /etc/asl/com.apple.install
 		chown root:wheel /etc/asl/com.apple.install
-		echo "$(date -u)" "3.5 remediated" | tee -a "$logfile"	
+		echo "$(date -u)" "3.5 remediated" | tee -a "$logFile"	
 	fi
 	fi
 fi
